@@ -1,9 +1,10 @@
 return {
-  "craftzdog/solarized-osaka.nvim",
+  "catppuccin/nvim",
+  name = "catppuccin",
   lazy = false,
   priority = 1000,
   opts = {},
   config = function()
-    vim.cmd[[colorscheme solarized-osaka]]
+    vim.cmd[[colorscheme catppuccin]]
   end
 }
