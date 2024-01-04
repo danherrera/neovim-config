@@ -20,16 +20,27 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup {}
-      lspconfig.tsserver.setup {}
+      lspconfig.lua_ls.setup {
+        capabilities = capabilities,
+      }
+      lspconfig.tsserver.setup {
+        capabilities = capabilities,
+      }
       lspconfig.rust_analyzer.setup {
+        capabilities = capabilities,
         settings = {
           ['rust-analyzer'] = {},
         }
       }
-      lspconfig.angularls.setup {}
-      lspconfig.emmet_ls.setup {}
+      lspconfig.angularls.setup {
+        capabilities = capabilities,
+      }
+      lspconfig.emmet_ls.setup {
+        capabilities = capabilities,
+      }
 
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
@@ -37,7 +48,7 @@ return {
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
       vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, {})
       vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, {})
-      vim.keymap.set({'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, {})
+      vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
       vim.keymap.set('n', '<leader>f', function()
         vim.lsp.buf.format { async = true }
       end, {})
